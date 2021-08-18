@@ -4,9 +4,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
-{
+{   
+    [SerializeField] AudioClip crashSound;
+    [SerializeField] AudioClip landingSound;
+
+
+    [SerializeField] float levelLoadDelay = 2f;
+
+    bool isTransitioning = false;
     private void OnCollisionEnter(Collision other) {
         
+        if(isTransitioning){return;} // in here if we are transitioning it will not do anything below this line ! 
+
         switch(other.gameObject.tag){
             case "Friendly":
                 Debug.Log("Friendly");
@@ -17,11 +26,12 @@ public class CollisionHandler : MonoBehaviour
                 break;
 
             case "Finish":
-                LoadNextLevel();
+                NextLevelSequence();
                 break;
 
             default:
-                ReloadLevel();
+                
+                StartCrashSequence();       
                 break;
 
         }
@@ -31,6 +41,22 @@ public class CollisionHandler : MonoBehaviour
     void ReloadLevel(){
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex ;
         SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    void StartCrashSequence(){
+
+        isTransitioning = true;
+        Movement.audioSource.PlayOneShot(crashSound);   
+        GetComponent<Movement>().enabled =false;
+        Invoke("ReloadLevel", levelLoadDelay);
+    }
+
+    void NextLevelSequence(){
+        
+        isTransitioning = true;
+        Movement.audioSource.PlayOneShot(landingSound);
+        GetComponent<Movement>().enabled =false;
+        Invoke("LoadNextLevel", levelLoadDelay);
     }
 
     void LoadNextLevel(){
