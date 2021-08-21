@@ -8,14 +8,21 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] AudioClip crashSound;
     [SerializeField] AudioClip landingSound;
     [SerializeField] float levelLoadDelay = 2f;
-
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem crashParticles;
 
     bool isTransitioning = false;
+    bool collisionDisable = false;
+
+    private void Update() {
+        
+        RespondToDebugKeys();
+
+    }
     private void OnCollisionEnter(Collision other) {
         
-        if(isTransitioning){return;} // in here if we are transitioning it will not do anything below this line ! 
+        if(isTransitioning || collisionDisable){return;} // in here if we are transitioning it will not do anything below this line ! 
+
 
         switch(other.gameObject.tag){
             case "Friendly":
@@ -68,6 +75,16 @@ public class CollisionHandler : MonoBehaviour
             nextSceneIndex = 0;
         } 
         SceneManager.LoadScene(nextSceneIndex);  
+    }
+
+    void RespondToDebugKeys(){
+        if(Input.GetKeyDown(KeyCode.L)){
+            LoadNextLevel();
+        }
+        else if(Input.GetKeyDown(KeyCode.C)){
+            collisionDisable = !collisionDisable; // toggle collision 
+            Debug.Log("Collision disabled / enabled. ");
+        }
     }
 
 
