@@ -490,6 +490,7 @@ GameObject:
   - component: {fileID: 5512815350050838225}
   - component: {fileID: 5512815350050838224}
   - component: {fileID: 1602276924}
+  - component: {fileID: -1304372596379679520}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -680,6 +681,18 @@ MonoBehaviour:
   levelLoadDelay: 3
   successParticles: {fileID: 3301726181118353671}
   crashParticles: {fileID: 650492503074824702}
+--- !u!114 &-1304372596379679520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5512815350050838239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a834568fa890e50468a2a8ddd8c038d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7135182181673954408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,13 +1300,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3553fd250eb92d4091bebde350c6739, type: 3}
---- !u!4 &8038100674401682192 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4940884351362868, guid: a3553fd250eb92d4091bebde350c6739, type: 3}
-  m_PrefabInstance: {fileID: 8042474887193420836}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &7864225862421137752 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198100719057022332, guid: a3553fd250eb92d4091bebde350c6739, type: 3}
+  m_PrefabInstance: {fileID: 8042474887193420836}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8038100674401682192 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4940884351362868, guid: a3553fd250eb92d4091bebde350c6739, type: 3}
   m_PrefabInstance: {fileID: 8042474887193420836}
   m_PrefabAsset: {fileID: 0}
